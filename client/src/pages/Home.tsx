@@ -43,6 +43,8 @@ const gestureDescription: Record<GestureName, string> = {
   "一般手勢": "關節點追蹤正常",
 };
 
+const assetUrl = (fileName: string) => `${import.meta.env.BASE_URL}assets/${fileName}`;
+
 function distance(a: NormalizedLandmark, b: NormalizedLandmark) {
   return Math.hypot(a.x - b.x, a.y - b.y);
 }
@@ -265,7 +267,7 @@ export default function Home() {
       <header className="border-b border-[#171b21]/10 bg-[#f8f7f4]/90 backdrop-blur-xl">
         <div className="mx-auto flex max-w-[1500px] items-center justify-between px-5 py-4 sm:px-8 lg:px-10">
           <div className="flex items-center gap-3.5">
-            <img className="h-10 w-10 object-contain" src="/manus-storage/handscope-mark_c5f13ec6.png" alt="HandScope 圖示" />
+            <img className="h-10 w-10 object-contain" src={assetUrl("handscope-mark_c5f13ec6.png")} alt="HandScope 圖示" />
             <div>
               <p className="font-display text-[1.1rem] font-extrabold leading-none tracking-[-0.055em]"><span>HandSc</span><span className="wordmark-o">o</span><span>pe</span></p>
               <p className="mt-1 font-mono text-[9px] font-medium uppercase tracking-[0.21em] text-[#68717c]">Hand observation tool</p>
@@ -309,7 +311,7 @@ export default function Home() {
 
               {!isCameraLive && (
                 <div className="absolute inset-0 z-10 flex items-end bg-[#0b0f16]">
-                  <div className="absolute inset-0 bg-cover bg-center opacity-60" style={{ backgroundImage: "url('/manus-storage/handscope-observatory-hero_5c081d17.jpg')" }} />
+                  <div className="absolute inset-0 bg-cover bg-center opacity-60" style={{ backgroundImage: `url(${assetUrl("handscope-observatory-hero_5c081d17.jpg")})` }} />
                   <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(8,12,19,0.94)_0%,rgba(8,12,19,0.58)_48%,rgba(8,12,19,0.12)_100%)]" />
                   <div className="relative max-w-lg p-7 sm:p-10">
                     <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.16em] text-white/80">
@@ -351,7 +353,7 @@ export default function Home() {
           </div>
 
           <aside className="space-y-4">
-            <div className="obs-card overflow-hidden" style={{ backgroundImage: "linear-gradient(145deg, rgba(12, 17, 26, 0.98), rgba(21, 33, 49, 0.90)), url('/manus-storage/handscope-signal-texture_7bb4ca28.jpg')" }}>
+            <div className="obs-card overflow-hidden" style={{ backgroundImage: `linear-gradient(145deg, rgba(12, 17, 26, 0.98), rgba(21, 33, 49, 0.90)), url(${assetUrl("handscope-signal-texture_7bb4ca28.jpg")})` }}>
               <div className="relative z-10 flex items-center justify-between">
                 <span className="font-mono text-[10px] font-medium uppercase tracking-[0.17em] text-white/55">辨識結果</span>
                 <Sparkles className="h-4 w-4 text-[#5b96ff]" />
@@ -400,7 +402,7 @@ export default function Home() {
             </div>
             <div className="relative overflow-hidden border border-[#171b21]/10 bg-[#eeece7] p-2 sm:p-3">
               <div className="absolute left-5 top-5 z-10 flex items-center gap-2 border border-[#171b21]/12 bg-[#f8f7f4]/90 px-3 py-2 font-mono text-[9px] font-medium uppercase tracking-[0.16em] text-[#5f6975] backdrop-blur"><span className="h-1.5 w-1.5 rounded-full bg-[#247bff]" />Reference plate / calibrated</div>
-              <img src="/manus-storage/handscope-gesture-index_a8f92aab.jpg" alt="張開手掌、握拳與和平手勢的追蹤示意" className="h-auto w-full object-cover" />
+              <img src={assetUrl("handscope-gesture-index_a8f92aab.jpg")} alt="張開手掌、握拳與和平手勢的追蹤示意" className="h-auto w-full object-cover" />
               <div className="absolute inset-x-5 bottom-5 z-10 grid grid-cols-3 gap-2 sm:gap-3">
                 {[{ id: "G-01", title: "Open palm", detail: "五指延展 / 21 pts" }, { id: "G-02", title: "Closed fist", detail: "指尖收束 / 21 pts" }, { id: "G-03", title: "V sign", detail: "食中指延展 / 21 pts" }].map((item) => (
                   <div key={item.id} className="specimen-tag"><span className="text-[#247bff]">{item.id}</span><span className="mt-1 block text-[#26303b]">{item.title}</span><span className="mt-1 hidden text-[#747d87] sm:block">{item.detail}</span></div>
